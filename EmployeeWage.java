@@ -1,11 +1,14 @@
 public class EmployeeWage{
-	static final int PART_TIME=1;
-	static final int FULL_TIME=2;
-	static final int WAGE_PER_HOUR=20;
-	static final int WORKING_DAYS_IN_MONTH=20;
+	public static final int PART_TIME=1;
+	public static final int FULL_TIME=2;
+	public static final int WAGE_PER_HOUR=20;
+	public static final int WORKING_DAYS_IN_MONTH=20;
+	public static final int MAX_WORKING_HOURS_IN_MONTH=100;
 	public static void main(String[] args){
 		int totalEmpWage=0;
-		for(int days=1;days<=WORKING_DAYS_IN_MONTH;days++){
+		int totalEmpHrs=0;
+		int workingDays=0;
+		while(workingDays<WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HOURS_IN_MONTH){
 			int empHrs=0;
 			int empWage=0;
 			int empcheck=(int)(Math.floor(Math.random()*10)%3);
@@ -21,10 +24,10 @@ public class EmployeeWage{
 			}
 			empWage=empHrs*WAGE_PER_HOUR;
 			totalEmpWage+=empWage;
-			System.out.println("Employee Wage: "+empWage);
+			totalEmpHrs+=empHrs;
+			workingDays++;
+			System.out.println("Day: "+workingDays+" Employee Hours: "+totalEmpHrs);
 		}
-		System.out.println("Tolal Employee Wage: "+totalEmpWage);
+		System.out.println("Total Employee Wage: "+totalEmpWage);
 	}
 }
-	
-
