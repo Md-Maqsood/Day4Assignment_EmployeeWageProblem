@@ -36,6 +36,7 @@ public class EmployeeWage implements ComputeEmpWage{
 				default:
 					empHrs=0;
 			}
+			companyEmp.dailyWage.put(workingDays,empHrs*companyEmp.ratePerHour);
 			totalEmpHrs+=empHrs;
 			workingDays++;
 			System.out.println("Day: "+workingDays+" Employee Hours: "+totalEmpHrs);
@@ -63,13 +64,14 @@ class CompanyEmp{
 	public final int numOfDays;
 	public final int hoursPerMonth;
 	public int totalEmpWage; 
-	
+	public HashMap<Integer,Integer> dailyWage;
 	public CompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth) {
 		super();
 		this.company = company;
 		this.ratePerHour = ratePerHour;
 		this.numOfDays = numOfDays;
 		this.hoursPerMonth = hoursPerMonth;
+		this.dailyWage=new HashMap<Integer,Integer>();
 	}
 
 	public void setTotalEmpWage(int totalEmpWage) {
