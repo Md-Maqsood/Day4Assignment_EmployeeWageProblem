@@ -1,21 +1,20 @@
-public class EmployeeWage{
-	public static final int PART_TIME=1;
+public class EmployeeWage implements ComputeEmpWage{
+	public static final int PART_TIME=1; 
 	public static final int FULL_TIME=2;
 
 	private int numOfCompany=0;
 	private CompanyEmp[] companyEmpArray; 
-	
 	public EmployeeWage() {
 		super();
 		companyEmpArray = new CompanyEmp[5];
 	}
 	
-	private void addCompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth) {
+	public void addCompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth) {
 		companyEmpArray[numOfCompany]=new CompanyEmp(company,ratePerHour,numOfDays,hoursPerMonth);
 		numOfCompany++;
 	}
 	
-	private void computeEmpWage() {
+	public void computeEmpWage() {
 		for(int i=0;i<numOfCompany;i++) {
 			companyEmpArray[i].setTotalEmpWage(this.computeEmpWage(companyEmpArray[i]));
 			System.out.println(companyEmpArray[i]);
@@ -54,6 +53,11 @@ public class EmployeeWage{
 	}
 }
 
+interface ComputeEmpWage{
+	public void addCompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth);
+	public void computeEmpWage();
+}
+
 class CompanyEmp{
 	public final String company;
 	public final int ratePerHour;
@@ -78,5 +82,4 @@ class CompanyEmp{
 	}
 	
 }
-
 
