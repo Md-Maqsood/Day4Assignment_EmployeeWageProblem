@@ -6,12 +6,16 @@ public class EmployeeWage{
 		int empHrs=0;
 		int empWage=0;
 		int empcheck=(int)(Math.floor(Math.random()*10)%3);
-		if (empcheck==FULL_TIME)
-			empHrs=8;
-		else if(empcheck==PART_TIME)
-			empHrs=4;
-		else
-			empHrs=0;
+		switch(empcheck){
+			case FULL_TIME:
+				empHrs=8;
+				break;
+			case PART_TIME:
+				empHrs=4;
+				break;
+			default:
+				empHrs=0;
+		}
 		empWage=empHrs*WAGE_PER_HOUR;
 		System.out.println("Employee Wage: "+empWage);
 	}
