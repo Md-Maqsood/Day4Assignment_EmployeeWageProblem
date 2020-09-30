@@ -4,13 +4,17 @@ public class EmployeeWage implements ComputeEmpWage{
 	public static final int FULL_TIME=2;
 	
 	private ArrayList<CompanyEmp> companyEmpList;
+	private Map<String,CompanyEmp> compToWageMap;
 	public EmployeeWage() {
 		super();
 		companyEmpList = new ArrayList<CompanyEmp>();
+		compToWageMap=new HashMap<String,CompanyEmp>();
 	}
 	
 	public void addCompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth) {
-		companyEmpList.add(new CompanyEmp(company,ratePerHour,numOfDays,hoursPerMonth));
+		CompanyEmp companyEmp=new CompanyEmp(company, ratePerHour, numOfDays, hoursPerMonth);
+		companyEmpList.add(companyEmp);
+		compToWageMap.put(company, companyEmp);
 	}
 	
 	public void computeEmpWage() {
@@ -44,18 +48,24 @@ public class EmployeeWage implements ComputeEmpWage{
 		return totalEmpHrs*companyEmp.ratePerHour;
 	}
 	
+	@Override
+	public int getTotalWage(String company) {
+		return compToWageMap.get(company).totalEmpWage;
+	}
 	public static void main(String[] args){
 		
 		ComputeEmpWage employeeWage=new EmployeeWage();
 		employeeWage.addCompanyEmp("Dmart", 20, 2, 10);
 		employeeWage.addCompanyEmp("Reliance", 10, 4, 20);
 		employeeWage.computeEmpWage();
+		System.out.println("Total wage for Dmart Company: "+employeeWage.getTotalWage("Dmart"));
 	}
 }
 
 interface ComputeEmpWage{
 	public void addCompanyEmp(String company, int ratePerHour, int numOfDays, int hoursPerMonth);
 	public void computeEmpWage();
+	public int getTotalWage(String company);
 }
 
 class CompanyEmp{
