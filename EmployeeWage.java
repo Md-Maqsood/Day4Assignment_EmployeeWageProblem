@@ -4,7 +4,8 @@ public class EmployeeWage{
 	public static final int WAGE_PER_HOUR=20;
 	public static final int WORKING_DAYS_IN_MONTH=20;
 	public static final int MAX_WORKING_HOURS_IN_MONTH=100;
-	public static void main(String[] args){
+	
+	public static int calcEmpWageForCompany() {
 		int totalEmpWage=0;
 		int totalEmpHrs=0;
 		int workingDays=0;
@@ -28,6 +29,10 @@ public class EmployeeWage{
 			workingDays++;
 			System.out.println("Day: "+workingDays+" Employee Hours: "+totalEmpHrs);
 		}
-		System.out.println("Total Employee Wage: "+totalEmpWage);
+		System.out.println("Total Employee Wage for company is "+totalEmpWage);
+		return totalEmpWage;
+	}
+	public static void main(String[] args){
+		calcEmpWageForCompany();
 	}
 }
