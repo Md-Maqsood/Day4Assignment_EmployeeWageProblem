@@ -46,7 +46,7 @@ public class EmployeeWage implements ComputeEmpWage{
 	
 	public static void main(String[] args){
 		
-		EmployeeWage employeeWage=new EmployeeWage();
+		ComputeEmpWage employeeWage=new EmployeeWage();
 		employeeWage.addCompanyEmp("Dmart", 20, 2, 10);
 		employeeWage.addCompanyEmp("Reliance", 10, 4, 20);
 		employeeWage.computeEmpWage();
